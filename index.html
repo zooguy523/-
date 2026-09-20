@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>APEX 自己紹介カードメーカー</title>
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+</head>
+
+
+<body>
+
+  <div class="app">
+
+    <header class="app-header">
+
+      <h1>
+        APEX 自己紹介カードメーカー
+      </h1>
+
+      <p>
+        入力して、自分だけの自己紹介カードを作ろう！
+      </p>
+
+    </header>
+
+
+
+    <main class="layout">
+
+
+      <!-- =========================
+           完成カード
+      ========================== -->
+
+      <section class="preview-section">
+
+        <div class="preview-heading">
+
+          <h2>
+            完成カード
+          </h2>
+
+          <span id="legendCounter">
+            レジェンド 0 / 5
+          </span>
+
+        </div>
+
+
+        <div
+          id="card"
+          class="card"
+        >
+
+          <img
+            id="cardBackground"
+            class="card-background"
+            src="https://i.ibb.co/j9m4kLM5/693-B6-E21-5-C1-B-4-BF3-93-EB-F12-E9-A5-E079-B.png"
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+            alt="APEX 自己紹介カード"
+          >
+
+
+          <div
+            id="overlayLayer"
+            class="overlay-layer"
+          ></div>
+
+        </div>
+
+
+        <div class="card-actions">
+
+          <button
+            id="openImageButton"
+            class="image-button"
+            type="button"
+          >
+            🖼️ 完成カードを表示
+          </button>
+
+
+          <div
+            id="saveMessage"
+            class="save-message"
+          ></div>
+
+        </div>
+
+      </section>
+
+
+
+      <!-- =========================
+           入力エリア
+      ========================== -->
+
+      <section class="panel controls-panel">
+
+        <h2>
+          プロフィール入力
+        </h2>
+
+
+        <div class="form-grid">
+
+
+          <label>
+
+            名前
+
+            <input
+              id="nameInput"
+              type="text"
+              placeholder="名前"
+              maxlength="24"
+            >
+
+          </label>
+
+
+
+          <label>
+
+            ID
+
+            <input
+              id="idInput"
+              type="text"
+              placeholder="ゲームID"
+              maxlength="30"
+            >
+
+          </label>
+
+
+
+          <label>
+
+            活動時間
+
+            <input
+              id="timeInput"
+              type="text"
+              placeholder="例：21:00〜24:00"
+              maxlength="30"
+            >
+
+          </label>
+
+
+
+          <label>
+
+            好きな武器
+
+            <input
+              id="weaponInput"
+              type="text"
+              placeholder="例：CAR / R-301"
+              maxlength="30"
+            >
+
+          </label>
+
+
+
+          <label>
+
+            プレイスタイル
+
+            <input
+              id="styleInput"
+              type="text"
+              placeholder="例：楽しく！ランク中心"
+              maxlength="40"
+            >
+
+          </label>
+
+
+
+          <label>
+
+            ひとこと
+
+            <textarea
+              id="commentInput"
+              placeholder="自由に入力"
+              maxlength="100"
+            ></textarea>
+
+          </label>
+
+        </div>
+
+
+
+        <h3>
+          性別
+        </h3>
+
+        <div
+          id="genderButtons"
+          class="choice-grid"
+        ></div>
+
+
+
+        <h3>
+          ランク
+        </h3>
+
+        <div
+          id="rankButtons"
+          class="choice-grid rank-buttons"
+        ></div>
+
+
+
+        <h3>
+          よく使うレジェンド
+        </h3>
+
+        <p class="mini-note">
+          最大5体まで選択できます
+        </p>
+
+        <div
+          id="legendButtons"
+          class="choice-grid legend-buttons"
+        ></div>
+
+
+
+        <h3>
+          プラットフォーム
+        </h3>
+
+        <div
+          id="platformButtons"
+          class="choice-grid"
+        ></div>
+
+
+
+        <h3>
+          ボイスチャット
+        </h3>
+
+        <p class="mini-note">
+          複数選択できます
+        </p>
+
+        <div
+          id="vcButtons"
+          class="choice-grid"
+        ></div>
+
+
+
+        <div class="utility-buttons">
+
+          <button
+            id="clearAll"
+            class="clear-button"
+            type="button"
+          >
+            入力を全部クリア
+          </button>
+
+        </div>
+
+      </section>
+
+    </main>
+
+
+
+    <footer class="footer">
+
+      APEX 自己紹介カードメーカー
+
+    </footer>
+
+  </div>
+
+
+
+  <!-- =========================
+       完成画像モーダル
+  ========================== -->
+
+  <div
+    id="imageModal"
+    class="image-modal hidden"
+    aria-hidden="true"
+  >
+
+    <div
+      id="imageModalBackdrop"
+      class="image-modal-backdrop"
+    ></div>
+
+
+    <div class="image-modal-content">
+
+      <button
+        id="closeImageModal"
+        class="image-modal-close"
+        type="button"
+        aria-label="閉じる"
+      >
+        ×
+      </button>
+
+
+      <h2>
+        完成画像
+      </h2>
+
+
+      <p class="image-modal-note">
+
+        iPhoneでは下の画像を
+
+        <strong>
+          長押し →「写真に保存」
+        </strong>
+
+        してください。
+
+      </p>
+
+
+      <img
+        id="resultImage"
+        class="result-image"
+        alt="完成したAPEX自己紹介カード"
+      >
+
+
+      <p class="image-modal-subnote">
+
+        保存メニューが出ない場合は、
+        画像を一度タップしてから長押ししてみてください。
+
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <script src="script.js"></script>
+
+</body>
+
+</html>
